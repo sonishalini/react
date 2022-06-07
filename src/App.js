@@ -2,42 +2,82 @@ import logo from './logo.svg';
 import './App.css';
 import { Component } from 'react';
 import AddTodo from "./addTodo";
+import TodoItem from './TodoItem';
 
 // App.js is a entry point pure project ka 
 
-class App extends Component{
-  state={
+class App extends Component
+{
+  state=
+  {
     todos: [
       {
-        text: "Buy Milk"
+        text: "Buy Milk",
+        completed : false
       },
       {
-        text: "Buy Tea"
+        text: "Buy Tea",
+        completed : true
       },
       {
-        text: "Buy Coffee"
-       }
+        text: "Buy Coffee",
+        completed : false
+       },
+       {
+         text: "Buy Cycle",
+         completed : true
+       },
     ]
   };
 
-addTodoState = text =>{
-  const newTodos =this.state.todos.concat({
-    text
+toggleComplete =(index) => 
+{
+  const newTodos = this.state.todos.map((todo,i) =>
+  {
+      if(index === i){
+        return(
+        {
+          ...todo,
+          completed: !todo.completed
+        }
+        );
+      }
+      return todo;
   });
-
-this.setState({
-  todos:newTodos
-});
-
+  this.setState(
+    {
+      todos : newTodos
+    });
 };
-  render(){
-    return<div className='App'>
-      {this.state.todos.map((todo ,index)=>{
-        return <li key={index}>{todo.text}</li>;
 
-      })}
-      <AddTodo addTodoState={this.addTodoState}/>
-    </div>
+addTodoToState = text =>
+  {
+    const newTodos =this.state.todos.concat(
+       {
+          text
+        });
+        this.setState(
+        {
+          todos : newTodos
+        });
+  };
+
+  render(){
+    return(
+      <div className="App">
+        {this.state.todos.map((todo,index) =>{
+          return (
+          <TodoItem
+             toggleComplete={this.toggleComplete}
+             todo={todo} 
+             index={index} // 2nd type jo index pass kara hai vo todoItem Component ke under ham use kar paye
+             key={index} //react specification hai isliye ham yaha use nhi kar sakte 
+             />
+          );
+        })}
+        <AddTodo addTodoToState={this.addTodoToState} />
+      </div>
+    );
   }
  
 }

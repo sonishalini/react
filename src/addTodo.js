@@ -15,7 +15,7 @@ class AddTodo extends React.Component{
         // isse browser reload nahi hota hai line nu. 6 
         event.preventDefault();
 
-        this.props.addTodoState(this.state.todotext);
+        this.props.addTodoToState(this.state.todotext);
 
         this.setState({
             todotext: ""
