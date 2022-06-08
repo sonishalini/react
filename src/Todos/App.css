@@ -1,7 +1,11 @@
-.App{
+.App {
     text-align: center;
-}
-
-.completed{
-    text-decoration:line-through;
-}
+  }
+  
+  .completed {
+    text-decoration: line-through;
+  }
+  
+  li{
+    list-style: none;
+  }

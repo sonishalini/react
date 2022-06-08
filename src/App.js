@@ -101,6 +101,7 @@ addTodoToState = text =>
       <div className="App">
         {this.state.todos.map((todo,index) =>{
           return (
+            // Component 1
           <TodoItem
              toggleComplete={this.toggleComplete}
              deletetTodoFromState={this.deletetTodoFromState}
@@ -111,6 +112,7 @@ addTodoToState = text =>
              />
           );
         })}
+        {/*component 2  */}
         <AddTodo addTodoToState={this.addTodoToState} />
       </div>
     );
