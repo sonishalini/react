@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class TodoItem extends React.Component
 {
@@ -31,7 +32,6 @@ class TodoItem extends React.Component
     render()
     {
         const {todo} =this.props;
-        
         if (this.state.isEditing)
          {
              return (
@@ -52,9 +52,6 @@ class TodoItem extends React.Component
                  </li>
              );
          }
-
-
-
         return(
             <li 
                 
@@ -69,4 +66,15 @@ class TodoItem extends React.Component
         );
     }
 }
+TodoItem.propTypes ={
+    toggleComplete: PropTypes.func.isRequired,
+    deletetTodoFromState: PropTypes.func.isRequired,
+    editTodoFromState: PropTypes.func.isRequired,
+    todo: PropTypes.object.isRequired,
+    index: PropTypes.number
+};
+TodoItem.defaultProps ={
+    index : 0
+}; 
+
 export default TodoItem;

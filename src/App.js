@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { Component } from 'react';
+import React,{ Component } from 'react';
 import AddTodo from "./addTodo";
 import TodoItem from './TodoItem';
 
