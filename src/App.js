@@ -65,6 +65,24 @@ deletetTodoFromState = (index) =>
   })
 };
 
+editTodoFromState =(index , newText) => 
+{
+  const newTodos = this.state.todos.map((todo , i) => 
+  {
+    if(index === i)
+    {
+      return {
+        ...todo, 
+        text: newText
+      };
+    }
+    return todo;
+  });
+  this.setState({
+    todos: newTodos
+  });
+};
+
 addTodoToState = text =>
   {
     const newTodos =this.state.todos.concat(
@@ -86,6 +104,7 @@ addTodoToState = text =>
           <TodoItem
              toggleComplete={this.toggleComplete}
              deletetTodoFromState={this.deletetTodoFromState}
+             editTodoFromState={this.editTodoFromState}
              todo={todo} 
              index={index} // 2nd type jo index pass kara hai vo todoItem Component ke under ham use kar paye
              key={index} //react specification hai isliye ham yaha use nhi kar sakte 

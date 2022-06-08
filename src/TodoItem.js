@@ -24,6 +24,8 @@ class TodoItem extends React.Component
 
     editTodoSubmitHandler = (event) => {
         event.preventDefault();
+        this.props.editTodoFromState(this.props.index, this.newText.value);
+        this.toggleEditing();
     }
 
     render()
@@ -35,7 +37,15 @@ class TodoItem extends React.Component
              return (
                  <li>
                      <form onSubmit={this.editTodoSubmitHandler}>
-                         <input type="text" defaultValue={todo.text}/>
+                         <input type="text"
+                          defaultValue={todo.text}
+                           ref =  
+                        { node => 
+                            {
+                             this.newText = node;
+                            }
+                        }
+                    />
                          <button type="submit">Save</button>
                          <button onClick={this.toggleEditing}>Cancel</button>
                      </form>
