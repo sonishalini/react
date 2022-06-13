@@ -16,9 +16,7 @@ class App extends Component
 
 componentDidMount() {
   axios.get("http://localhost:3322/todos").then((result) =>{
-      console.log(result);
-
-      this.setState({
+       this.setState({
         todos: result.data
       });
   });
@@ -26,6 +24,8 @@ componentDidMount() {
 
 toggleComplete =(index) => 
 {
+  const {todos} = this.state;
+  const todo =  todos[index];
   const newTodos = this.state.todos.map((todo,i) =>
   {
       if(index === i){
@@ -38,14 +38,21 @@ toggleComplete =(index) =>
       }
       return todo;
   });
-  this.setState(
-    {
-      todos : newTodos
-    });
+// API call for update 
+  axios.put("http://localhost:3322/todos/" + todo.id, {
+    ...todo,
+    completed: !todo.completed
+  }).then(() => {
+    this.setState(
+      {
+        todos : newTodos
+      });
+  })
 };
-
 deletetTodoFromState = (index) => 
 {
+  const {todos} = this.state;
+  const todo =  todos[index];
   const newTodos =this.state.todos.filter((todo, i) =>
   {
     // if (index === i){
@@ -54,9 +61,16 @@ deletetTodoFromState = (index) =>
     // return true;
     return index === i ? false : true;
   });
-  this.setState({
-    todos : newTodos
-  })
+
+  // API Call for delete
+  axios.delete("http://localhost:3322/todos/" + todo.id,{
+    ...todo,
+    completed: !todo.completed
+   }).then(() =>{
+    this.setState({
+      todos : newTodos
+    });
+   })
 };
 
 editTodoFromState =(index , newText) => 
