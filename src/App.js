@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
 import React,{ Component } from 'react';
 import AddTodo from "./addTodo";
@@ -10,25 +11,18 @@ class App extends Component
 {
   state=
   {
-    todos: [
-      {
-        text: "Buy Milk",
-        completed : false
-      },
-      {
-        text: "Buy Tea",
-        completed : true
-      },
-      {
-        text: "Buy Coffee",
-        completed : false
-       },
-       {
-         text: "Buy Cycle",
-         completed : true
-       },
-    ]
+    todos: []
   };
+
+componentDidMount() {
+  axios.get("http://localhost:3322/todos").then((result) =>{
+      console.log(result);
+
+      this.setState({
+        todos: result.data
+      });
+  });
+}
 
 toggleComplete =(index) => 
 {
