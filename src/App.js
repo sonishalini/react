@@ -75,7 +75,13 @@ deletetTodoFromState = (index) =>
 
 editTodoFromState =(index , newText) => 
 {
-  const newTodos = this.state.todos.map((todo , i) => 
+  const todo =this.state.todos[index];
+
+  axios.put("http://localhost:3322/todos/" + todo.id,{
+    ...todo,
+    text: newText
+  }).then(()=>{
+    const newTodos = this.state.todos.map((todo , i) => 
   {
     if(index === i)
     {
@@ -89,7 +95,10 @@ editTodoFromState =(index , newText) =>
   this.setState({
     todos: newTodos
   });
+});
 };
+
+  
 
 addTodoToState = text =>
   {
