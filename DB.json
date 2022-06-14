@@ -2,8 +2,13 @@
   "todos": [
     {
       "text": "Learn Redux",
-      "completed": false,
+      "completed": true,
       "id": 2
+    },
+    {
+      "text": "Learn React",
+      "completed": true,
+      "id": 3
     }
   ]
 }

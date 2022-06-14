@@ -93,15 +93,22 @@ editTodoFromState =(index , newText) =>
 
 addTodoToState = text =>
   {
-    const newTodos =this.state.todos.concat(
-       {
-          text,
-          completed : false
-        });
-        this.setState(
+    // API call for add a data  -- create - post
+    axios.post("http://localhost:3322/todos",{
+      text,
+      completed: false
+    })
+    .then((result) =>{
+      const newTodos =this.state.todos.concat(
         {
-          todos : newTodos
-        });
+           text,
+           completed : false
+         });
+         this.setState(
+         {
+           todos : newTodos
+         });
+    });
   };
 
   render(){
