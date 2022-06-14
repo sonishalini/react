@@ -76,7 +76,7 @@ deletetTodoFromState = (index) =>
 editTodoFromState =(index , newText) => 
 {
   const todo =this.state.todos[index];
-
+// edit API for updating --- put
   axios.put("http://localhost:3322/todos/" + todo.id,{
     ...todo,
     text: newText
