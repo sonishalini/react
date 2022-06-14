@@ -53,29 +53,27 @@ deletetTodoFromState = (index) =>
 {
   const {todos} = this.state;
   const todo =  todos[index];
-  const newTodos =this.state.todos.filter((todo, i) =>
+// Delete API call for Delete -- delete
+  axios.delete("http://localhost:3322/todos/" + todo.id).then(()=>
   {
-    // if (index === i){
-    //   return false;
-    // }
-    // return true;
-    return index === i ? false : true;
-  });
+    const newTodos =todos.filter((todo, i) =>
+    {
 
-  // API Call for delete
-  axios.delete("http://localhost:3322/todos/" + todo.id,{
-    ...todo,
-    completed: !todo.completed
-   }).then(() =>{
-    this.setState({
-      todos : newTodos
+      return index === i ? false : true;
     });
-   })
+    this.setState({
+      todos: newTodos
+    });
+  });
 };
+ 
+
+  
 
 editTodoFromState =(index , newText) => 
 {
-  const todo =this.state.todos[index];
+  const {todos} =this.state;
+  const todo = todos[index];
 // edit API for updating --- put
   axios.put("http://localhost:3322/todos/" + todo.id,{
     ...todo,

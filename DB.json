@@ -11,19 +11,9 @@
       "id": 3
     },
     {
-      "text": "learn C",
-      "completed": false,
-      "id": 4
-    },
-    {
       "text": "Learn Git",
       "completed": false,
-      "id": 5
-    },
-    {
-      "text": "Learn Development",
-      "completed": false,
-      "id": 6
+      "id": 4
     }
   ]
 }
